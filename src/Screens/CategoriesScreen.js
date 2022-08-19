@@ -3,9 +3,15 @@ import {FlatList, StyleSheet, Text, View} from 'react-native';
 import CategoriesGridTitle from '../components/CategoriesGridTitle';
 import {CATEGORIES} from '../data/dummy-data';
 
-const CategoriesScreen = () => {
+const CategoriesScreen = ({navigation}) => {
   function renderCategoryItem({item}) {
-    return <CategoriesGridTitle item={item} />;
+    function onPressHandler() {
+      navigation.navigate('MealOverView', {
+        categoryID: item.id,
+      });
+    }
+
+    return <CategoriesGridTitle item={item} onPress={onPressHandler} />;
   }
   return (
     <FlatList
